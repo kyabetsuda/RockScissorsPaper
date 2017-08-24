@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8" />
+<title>チャット</title>
+</head>
+<body>
+    <h2>ChatRoom</h2>
+    <p th:text="${msg}"></p>
+    <label for="roomName">room</label>
+    <select id="roomName">
+    	<option value="room1">room1</option>
+    	<option value="room2">room2</option>
+    	<option value="room3">room3</option>
+    	<option value="room4">room4</option>
+    	<option value="room5">room5</option>
+    </select>
+    <button id="connectButton" type="button">connect</button>
+    <button id="disconnectButton" >disconnect</button>
+    <label for="message" >message</label>
+    <input id="message" type="text"  />
+    <button id="sendButton" type="button" >submit</button>
+   	<div id="messageList" >
+    </div>
+
+  <script src="/webjars/jquery/1.12.4/jquery.min.js"></script>
+  <script src="/webjars/stomp-websocket/2.3.3-1/stomp.js"></script>
+  <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(function() {
+      var endpoint = 'ws://' + location.host + '/endpoint';
+      var subscribePrefix = '/topic/';
+      var stompClient = null;
+
+
+
+      $('#connectButton').click(function() {
+
+        $("#messageList").empty();
+
+        stompClient = Stomp.over(new WebSocket(endpoint));
+        stompClient.connect({}, function() {
+          stompClient.subscribe(
+              subscribePrefix + $('#roomName').val(),
+              function(message) {
+                $('#messageList').prepend($('<p></p>').text(message.body));
+              });
+
+          $('#roomName').prop('disabled', true);
+          $('#connectButton').prop('disabled', true);
+          $('#disconnectButton').prop('disabled', false);
+        });
+      });
+
+      $('#disconnectButton').click(function() {
+
+        stompClient.disconnect();
+        stompClient = null;
+
+        $('#roomName').prop('disabled', false);
+        $('#connectButton').prop('disabled', false);
+        $('#disconnectButton').prop('disabled', true);
+      });
+
+      $('#sendButton').click(function() {
+        if (!stompClient) {
+          alert('Not connected.');
+          return;
+        }
+
+        stompClient.send("/app/" + $('#roomName').val(), {}, $('#message').val());
+        $('#message').val("");
+      });
+    });
+  </script>
+</body>
+</html>

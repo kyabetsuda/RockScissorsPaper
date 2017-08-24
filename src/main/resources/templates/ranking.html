@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+<tr><th>Rank</th><th>Name</th><th>Score</th></tr>
+<tr th:each="obj:${scorelist}">
+	<td th:text="${obj[0]}"></td>
+	<td th:text="${obj[1]}"></td>
+	<td th:text="${obj[2]}"></td>
+</tr>
+</table>
+
+</body>
+</html>

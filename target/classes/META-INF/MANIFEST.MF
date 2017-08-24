@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: RockScissorsPaper
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: TsudaJun
+Implementation-Vendor-Id: com.tsuda.springboot
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/RockScissors
+ Paper/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

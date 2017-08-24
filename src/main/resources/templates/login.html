@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body onload="document.login.username.focus();">
+  <!-- ログインが失敗した時のメッセージ -->
+<div class="alert alert-danger" role="alert"
+    th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+    <strong>ログインに失敗しました: </strong>ユーザが存在しないか、パスワードが間違っている、または他のユーザがすでにログインしています。
+</div>
+<p th:text="${msg}">aiueo</p>
+<form method="post" th:action="@{/login}">
+	<table>
+		<tr><td><label for="name">Name</label></td>
+			<td><input type="text" name="name" /></td></tr>
+		<tr><td><label for="password">Password</label></td>
+			<td><input type="password" name="password" /></td></tr>
+		<tr><td></td><td><input type="submit" /></td></tr>
+	</table>
+</form>
+</body>
+</html>

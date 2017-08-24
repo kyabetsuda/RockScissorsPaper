@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<script>
+
+function rock(){
+	var RSP = document.getElementById("RSP");
+	RSP.innerHTML = "rock";
+	battle();
+}
+
+function scissors(){
+	var RSP = document.getElementById("RSP");
+	RSP.innerHTML = "scissors";
+	battle();
+}
+
+function paper(){
+	var RSP = document.getElementById("RSP");
+	RSP.innerHTML = "paper";
+	battle();
+}
+
+function battle(){
+	var RSP = document.getElementById("RSP");
+	if(RSP.innerHTML == "rock"){
+		var myNumber = 0;
+	}
+	if(RSP.innerHTML == "scissors"){
+		var myNumber = 1;
+	}
+	if(RSP.innerHTML == "paper"){
+		var myNumber = 2;
+	}
+	var hisNumber = Math.floor(Math.random()*3);
+	if( myNumber - hisNumber == -2 ){
+	var judge = "lose";
+	}
+	if( myNumber - hisNumber == -1 ){
+	var judge = "win";
+	}
+	if( myNumber - hisNumber == 0 ){
+	var judge = "draw";
+	}
+	if( myNumber - hisNumber == 1 ){
+	var judge = "lose";
+	}
+	if( myNumber - hisNumber == 2 ){
+	var judge = "win";
+	}
+	var judgeDiv = document.getElementById("judge");
+	sendData(judge);
+}
+
+function sendData(judge) {
+  form = document.createElement("form"),
+  node = document.createElement("input");
+
+
+  form.method = "post";
+  form.action = "/battle";
+
+  node.name  = "hoge";
+  node.value = judge;
+  form.appendChild(node.cloneNode());
+
+
+  // フォームは送信するために、主ドキュメントに付加することが必要です
+  form.style.display = "none";
+  document.body.appendChild(form);
+
+  form.submit();
+
+  // しかしフォームを送信した後は、置いたままにしても役に立ちません
+  document.body.removeChild(form);
+}
+</script>
+</head>
+<body>
+
+<p th:text="${msg}" id="message"></p>
+<p hidden="hidden" id="RSP">a</p>
+
+<img  src="/static/images/rock.jpg" id="rock" onclick="rock();"/>
+<img  src="/static/images/scissors.jpg" id="scissors" onclick="scissors();"/>
+<img  src="/static/images/paper.jpg" id="paper" onclick="paper();"/>
+</body>
+</html>

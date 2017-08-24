@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type"
+		content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<p th:text="${msg}"></p>
+
+<table>
+<tr th:each="obj : ${datalist}"><td>Name: </td><td th:text="${obj.getUsername()}"></td></tr>
+<tr><td>Score: </td><td th:text="${score}"></td></tr>
+</table>
+</body>
+</html>
