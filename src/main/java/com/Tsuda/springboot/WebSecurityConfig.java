@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
           // アクセス権限の設定
-          // staticディレクトリにある、'/css/','fonts','/js/'は制限なし
+          // 制限なしのurl
           .antMatchers("/css/**", "/fonts/**", "/js/**", "/", "/register").permitAll()
           // '/admin/'で始まるURLには、'ADMIN'ロールのみアクセス可
           .antMatchers("/admin/**").hasRole("ADMIN")
@@ -56,13 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // ログアウト処理のURL
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             // ログアウト成功時の遷移先URL
-            .logoutSuccessUrl("/loggedout")
+            .logoutSuccessUrl("/log_out")
             // ログアウト時に削除するクッキー名
             .deleteCookies("JSESSIONID")
             // ログアウト時のセッション破棄を有効化
             .invalidateHttpSession(true)
             .permitAll();
     http
+    	  //多重ログイン禁止
          .sessionManagement()
            .maximumSessions(1)
            .maxSessionsPreventsLogin(true)

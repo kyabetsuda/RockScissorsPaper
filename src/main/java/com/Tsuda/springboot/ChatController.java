@@ -1,5 +1,3 @@
-
-
 package com.Tsuda.springboot;
 
 import java.security.Principal;

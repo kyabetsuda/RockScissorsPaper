@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p >ログアウトしました。</p>
 
-<a href="/login">ログインページへ</a>
+<table>
+<tr><th>ユーザリスト</th></tr>
+<tr th:each="obj:${datalist}">
+	<td th:text="${obj.getUsername()}"></td>
+</tr>
+</table>
+
 </body>
 </html>

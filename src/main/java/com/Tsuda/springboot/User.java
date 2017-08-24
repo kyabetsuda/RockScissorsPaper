@@ -97,9 +97,7 @@ public class User implements UserDetails {
         return false;
     }
 
-    /**
-     * Returns the hashcode of the {@code username}.
-     */
+    //usernameのハッシュコードを返す。インスタンスの同一性の判断のときに用いられる。
     @Override
     public int hashCode() {
         return username.hashCode();

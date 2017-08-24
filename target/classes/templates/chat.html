@@ -7,7 +7,7 @@
 <title>チャット</title>
 </head>
 <body>
-    <h2>ChatRoom</h2>
+    <h2>チャットルーム</h2>
     <p th:text="${msg}"></p>
     <label for="roomName">room</label>
     <select id="roomName">
@@ -17,14 +17,15 @@
     	<option value="room4">room4</option>
     	<option value="room5">room5</option>
     </select>
-    <button id="connectButton" type="button">connect</button>
-    <button id="disconnectButton" >disconnect</button>
-    <label for="message" >message</label>
+    <button id="connectButton" type="button">接続</button>
+    <button id="disconnectButton" >切断</button>
+    <label for="message" >メッセージ</label>
     <input id="message" type="text"  />
-    <button id="sendButton" type="button" >submit</button>
+    <button id="sendButton" type="button" >送信</button>
    	<div id="messageList" >
     </div>
 
+<!-- WebSocketとStompを使ってのチャット機能 -->
   <script src="/webjars/jquery/1.12.4/jquery.min.js"></script>
   <script src="/webjars/stomp-websocket/2.3.3-1/stomp.js"></script>
   <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -66,7 +67,7 @@
 
       $('#sendButton').click(function() {
         if (!stompClient) {
-          alert('Not connected.');
+          alert('接続していません。');
           return;
         }
 

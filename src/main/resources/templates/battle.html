@@ -69,13 +69,13 @@ function sendData(judge) {
   form.appendChild(node.cloneNode());
 
 
-  // フォームは送信するために、主ドキュメントに付加することが必要です
+
   form.style.display = "none";
   document.body.appendChild(form);
 
   form.submit();
 
-  // しかしフォームを送信した後は、置いたままにしても役に立ちません
+
   document.body.removeChild(form);
 }
 </script>
@@ -85,8 +85,8 @@ function sendData(judge) {
 <p th:text="${msg}" id="message"></p>
 <p hidden="hidden" id="RSP">a</p>
 
-<img  src="/static/images/rock.jpg" id="rock" onclick="rock();"/>
-<img  src="/static/images/scissors.jpg" id="scissors" onclick="scissors();"/>
-<img  src="/static/images/paper.jpg" id="paper" onclick="paper();"/>
+<input type="button"  value="グー" id="rock" onclick="rock();" />
+<input type="button"  value="チョキ" id="scissors" onclick="scissors();"/>
+<input type="button"  value="ペーパー" id="paper" onclick="paper();"/>
 </body>
 </html>

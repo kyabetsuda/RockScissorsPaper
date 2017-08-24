@@ -17,7 +17,7 @@ import javax.validation.ReportAsSingleViolation;
 @ReportAsSingleViolation
 public @interface UniqueName {
 
-	String message() default " The typed name has already been used.";
+	String message() default "入力した名前はすでに使われています。";
 
 	Class<?>[] groups() default {};
 
